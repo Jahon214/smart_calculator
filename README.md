@@ -1,5 +1,7 @@
 # 🎙️ Voice Calculator Pro (Aqlli Ovozli Kalkulyator)
 
+🌐 **Jonli Sayt:** [https://smart-calculator-uz.vercel.app](https://smart-calculator-uz.vercel.app)
+
 Zamonaviy, tezkor va sun'iy intellektga asoslangan aqlli ovozli kalkulyator veb-ilovasi. Foydalanuvchi matematik misollarni og'zaki aytishi, ekranda yozishi yoki tugmalar orqali kiritishi mumkin.
 
 ---
