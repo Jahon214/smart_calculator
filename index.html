@@ -3,235 +3,307 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Voice Calculator Pro · Aqlli Ovozli Kalkulyator</title>
-  <meta name="description" content="Ovozli aqlli kalkulyator - o'zbek, rus va ingliz tillarida matematik ifodalarni ovoz orqali hisoblang.">
+  <title>Voice Calculator Pro AI · Aqlli Ovozli Kalkulyator</title>
+  <meta name="description" content="Next-Gen AI Ovozli Kalkulyator - O'zbek, Rus va Ingliz tillarida har qanday matematik ifodani ovoz bilan hisoblang.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎙️</text></svg>">
 </head>
 <body>
-  <div class="app-wrapper">
-    <!-- Header -->
-    <header class="header">
-      <div class="brand">
-        <div class="logo-box">
-          <span class="logo-icon">🎙️</span>
+  <!-- Ambient background glow elements -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <div class="app-container">
+    <!-- Top Header -->
+    <header class="top-nav">
+      <div class="brand-group">
+        <div class="ai-orb-badge">
+          <span class="ai-sparkle">✦</span>
+          <span class="orb-dot"></span>
         </div>
         <div>
-          <h1 class="brand-title">Voice Calc <span class="gradient-text">Pro</span></h1>
-          <p class="brand-subtitle">Aqlli Ovozli Kalkulyator · Smart Voice Engine</p>
+          <h1 class="brand-name">VoiceCalc <span class="neon-badge">PRO AI</span></h1>
+          <p class="brand-tagline">Aqlli Ovozli Matematik Dvigatel</p>
         </div>
       </div>
 
-      <div class="header-controls">
-        <!-- Language selector -->
-        <div class="lang-select-wrapper">
-          <label for="langSelect" class="visually-hidden">Tilni tanlang</label>
-          <select id="langSelect" class="select-pill" title="Ovoz tanish tili">
-            <option value="uz-UZ" selected>🇺🇿 O‘zbekcha</option>
-            <option value="ru-RU">🇷🇺 Русский</option>
-            <option value="en-US">🇬🇧 English</option>
+      <div class="nav-actions">
+        <!-- Language Select -->
+        <div class="custom-dropdown">
+          <label for="langSelector" class="visually-hidden">Til</label>
+          <select id="langSelector" class="nav-select" title="Ovoz tanish tili">
+            <option value="uz-UZ" selected>🇺🇿 O‘zbekcha (uz-UZ)</option>
+            <option value="ru-RU">🇷🇺 Русский (ru-RU)</option>
+            <option value="en-US">🇬🇧 English (en-US)</option>
           </select>
         </div>
 
-        <!-- TTS Toggle -->
-        <button id="ttsToggle" class="btn-pill active" title="Ovozli javobni yoqish/o‘chirish" aria-label="Ovozli javobni yoqish/o‘chirish">
-          <span class="icon">🔊</span>
-          <span class="btn-pill-label">Ovoz: Yoniq</span>
+        <!-- Scientific Mode Toggle -->
+        <button id="toggleSciBtn" class="nav-btn" type="button" title="Ilmiy kalkulyator rejimini yoqish/o‘chirish">
+          <span class="btn-icon">📐</span>
+          <span class="btn-text">Ilmiy rejim</span>
+        </button>
+
+        <!-- TTS Voice Toggle -->
+        <button id="toggleTtsBtn" class="nav-btn active" type="button" title="Ovozli javobni yoqish/o‘chirish">
+          <span class="btn-icon" id="ttsIcon">🔊</span>
+          <span class="btn-text" id="ttsLabel">Ovoz: Yoniq</span>
+        </button>
+
+        <!-- Sound FX Toggle -->
+        <button id="toggleSfxBtn" class="nav-btn active" type="button" title="Tugmalar tovushini yoqish/o‘chirish">
+          <span class="btn-icon" id="sfxIcon">🎵</span>
+          <span class="btn-text">Effektlar</span>
         </button>
       </div>
     </header>
 
-    <!-- Main Layout -->
-    <main class="main-layout">
-      <!-- Left: Calculator Panel -->
-      <section class="panel main-panel">
-        <!-- Screen / Display -->
-        <div class="display-container">
-          <div class="display-top">
-            <span class="panel-tag">HISOBLASH EKRANI</span>
-            <button id="copyBtn" class="copy-btn" title="Natijani nusxalash" aria-label="Natijani nusxalash">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-              <span>Nusxa olish</span>
-            </button>
+    <!-- Main Workspace -->
+    <main class="studio-layout">
+      <!-- Left / Center Main Calculator Area -->
+      <section class="calculator-card">
+        <!-- OLED Digital Display -->
+        <div class="display-glass">
+          <!-- Voice Transcript Bar -->
+          <div class="transcript-strip" id="transcriptStrip">
+            <div class="transcript-status-indicator">
+              <span class="pulse-ring"></span>
+              <span class="indicator-label" id="statusLabel">Mikrofon tayyor</span>
+            </div>
+            <div class="live-speech-text" id="liveSpeechText">Ovozingiz real vaqtda shu yerda aks etadi...</div>
           </div>
 
-          <div class="screen" aria-live="polite">
-            <div class="expression-line" id="expression">Hisoblashni boshlang</div>
-            <div class="result-line" id="result">0</div>
+          <!-- Formula Screen -->
+          <div class="math-screen">
+            <div class="formula-row" id="expressionView">Misolni ayting yoki yozing</div>
+            <div class="result-row">
+              <span class="result-symbol">=</span>
+              <span class="result-value" id="resultView">0</span>
+            </div>
+          </div>
+
+          <!-- Screen Actions Toolbar -->
+          <div class="screen-toolbar">
+            <div class="toolbar-left">
+              <span class="screen-chip" id="engineStatusBadge">AI ENGINE TAYYOR</span>
+            </div>
+            <div class="toolbar-right">
+              <button class="tool-btn" id="copyResultBtn" type="button" title="Natijani nusxalash">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span>Nusxalash</span>
+              </button>
+              <button class="tool-btn" id="speakResultBtn" type="button" title="Natijani ovoz bilan eshitish">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                <span>Aytib berish</span>
+              </button>
+              <button class="tool-btn danger" id="clearAllBtn" type="button" title="Tozalash (AC)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+                <span>Tozalash (AC)</span>
+              </button>
+            </div>
           </div>
         </div>
 
-        <!-- Voice Area -->
-        <div class="voice-section">
-          <button class="mic-button" id="micButton" type="button" aria-label="Ovoz bilan kiritishni boshlash">
-            <div class="mic-glow"></div>
-            <div class="mic-inner">
-              <span class="mic-icon" id="micIcon">🎙️</span>
-              <div class="mic-text-group">
-                <span class="mic-title" id="micLabel">BOSING VA GAPIRING</span>
-                <span class="mic-hint" id="micSubLabel">Misolni og‘zaki ayting</span>
+        <!-- Futuristic Voice Orb & Voice Section -->
+        <div class="voice-hero-card">
+          <div class="orb-container">
+            <button class="voice-orb-btn" id="mainMicBtn" type="button" aria-label="Ovoz bilan kiritishni boshlash">
+              <div class="orb-glow-outer"></div>
+              <div class="orb-ring-spin"></div>
+              <div class="orb-core">
+                <span class="orb-icon" id="mainMicIcon">🎙️</span>
               </div>
+            </button>
+          </div>
+
+          <div class="orb-meta">
+            <h2 class="orb-title" id="orbTitle">Bosing va misolni ayting</h2>
+            <p class="orb-desc" id="orbDesc">O‘zbekcha, Ruscha yoki Inglizcha erkin gapiring</p>
+            
+            <!-- Live Audio Frequency Bars -->
+            <div class="frequency-visualizer" id="freqVisualizer">
+              <span class="f-bar"></span>
+              <span class="f-bar"></span>
+              <span class="f-bar"></span>
+              <span class="f-bar"></span>
+              <span class="f-bar"></span>
+              <span class="f-bar"></span>
+              <span class="f-bar"></span>
+              <span class="f-bar"></span>
+              <span class="f-bar"></span>
+              <span class="f-bar"></span>
+              <span class="f-bar"></span>
             </div>
-
-            <!-- Visualizer wave bars -->
-            <div class="wave-visualizer" id="waveVisualizer">
-              <span class="bar"></span>
-              <span class="bar"></span>
-              <span class="bar"></span>
-              <span class="bar"></span>
-              <span class="bar"></span>
-              <span class="bar"></span>
-              <span class="bar"></span>
-            </div>
-          </button>
-
-          <div class="voice-status-box" id="voiceStatusBox">
-            <span class="status-pulse-dot" id="statusDot"></span>
-            <span class="status-text" id="status">Mikrofon tugmasini bosib, misolni ayting</span>
           </div>
         </div>
 
-        <!-- Example Voice Prompts -->
-        <div class="section-block">
-          <div class="section-title">
-            <span>✨ Sinab ko‘ring (Bosing)</span>
+        <!-- Quick Voice Prompts Carousel -->
+        <div class="smart-prompts-section">
+          <div class="prompts-header">
+            <span class="prompts-title">💡 Sinab ko‘ring (Bosing va eshiting)</span>
           </div>
-          <div class="examples-grid">
-            <button class="example-chip" data-speech="yigirma besh qo‘shuv o‘n besh" type="button">
-              <span class="chip-math">25 + 15</span>
-              <span class="chip-voice">“yigirma besh qo‘shuv o‘n besh”</span>
+          <div class="prompts-scroll">
+            <button class="prompt-chip" data-speech="yigirma besh qo‘shuv o‘n besh" type="button">
+              <span class="p-math">25 + 15</span>
+              <span class="p-speech">“yigirma besh qo‘shuv o‘n besh”</span>
             </button>
-            <button class="example-chip" data-speech="yuzdan yigirma ayir" type="button">
-              <span class="chip-math">100 − 20</span>
-              <span class="chip-voice">“yuzdan yigirma ayir”</span>
+            <button class="prompt-chip" data-speech="yuzdan yigirma ayir" type="button">
+              <span class="p-math">100 − 20</span>
+              <span class="p-speech">“yuzdan yigirma ayir”</span>
             </button>
-            <button class="example-chip" data-speech="yetti ko‘paytir sakkiz" type="button">
-              <span class="chip-math">7 × 8</span>
-              <span class="chip-voice">“yetti ko‘paytir sakkiz”</span>
+            <button class="prompt-chip" data-speech="yetti ko‘paytir sakkiz" type="button">
+              <span class="p-math">7 × 8</span>
+              <span class="p-speech">“yetti ko‘paytir sakkiz”</span>
             </button>
-            <button class="example-chip" data-speech="to‘qson olti bo‘luv o‘n ikki" type="button">
-              <span class="chip-math">96 ÷ 12</span>
-              <span class="chip-voice">“to‘qson olti bo‘luv o‘n ikki”</span>
+            <button class="prompt-chip" data-speech="to‘qson olti bo‘luv o‘n ikki" type="button">
+              <span class="p-math">96 ÷ 12</span>
+              <span class="p-speech">“to‘qson olti bo‘luv o‘n ikki”</span>
             </button>
-            <button class="example-chip" data-speech="yuz ellikning yigirma foizi" type="button">
-              <span class="chip-math">150 ning 20%</span>
-              <span class="chip-voice">“yuz ellikning 20 foizi”</span>
+            <button class="prompt-chip" data-speech="yuz ellikning yigirma foizi" type="button">
+              <span class="p-math">150 ning 20%</span>
+              <span class="p-speech">“150 ning 20 foizi”</span>
             </button>
-            <button class="example-chip" data-speech="ildiz oltmish to‘rt" type="button">
-              <span class="chip-math">√64</span>
-              <span class="chip-voice">“ildiz 64”</span>
+            <button class="prompt-chip" data-speech="ildiz sakson bir" type="button">
+              <span class="p-math">√81</span>
+              <span class="p-speech">“ildiz 81”</span>
             </button>
-            <button class="example-chip" data-speech="beshning kvadrati" type="button">
-              <span class="chip-math">5²</span>
-              <span class="chip-voice">“beshning kvadrati”</span>
+            <button class="prompt-chip" data-speech="beshning kvadrati" type="button">
+              <span class="p-math">5²</span>
+              <span class="p-speech">“beshning kvadrati”</span>
             </button>
-            <button class="example-chip" data-speech="ellikga o‘nni qo‘sh" type="button">
-              <span class="chip-math">50 + 10</span>
-              <span class="chip-voice">“ellikga o‘nni qo‘sh”</span>
+            <button class="prompt-chip" data-speech="ellikga ellikni qo‘sh" type="button">
+              <span class="p-math">50 + 50</span>
+              <span class="p-speech">“ellikga ellikni qo‘sh”</span>
             </button>
           </div>
         </div>
 
-        <!-- Manual Input -->
-        <div class="manual-input-row">
-          <input id="manualInput" type="text"
-            placeholder="Matnli kiriting: masalan 25 + 15 yoki 2 * (8 + 3)"
-            autocomplete="off" spellcheck="false">
-          <button class="btn-action primary" id="calculateButton" type="button">Hisobla</button>
+        <!-- Manual Input Row -->
+        <div class="manual-box">
+          <div class="input-wrap">
+            <span class="input-icon">⌨️</span>
+            <input id="keyboardInput" type="text"
+              placeholder="Qo‘lda kiritish: 25 + 15 yoki sqrt(64) yoki 2 * (8 + 3)"
+              autocomplete="off" spellcheck="false">
+          </div>
+          <button class="calc-action-btn" id="evalBtn" type="button">Hisobla</button>
         </div>
 
-        <!-- Keypad -->
-        <div class="keypad" id="keypad">
-          <button class="key key-clear" data-key="AC" type="button">AC</button>
-          <button class="key key-op" data-key="(" type="button">(</button>
-          <button class="key key-op" data-key=")" type="button">)</button>
-          <button class="key key-fn" data-key="sqrt(" type="button">√</button>
-          <button class="key key-op" data-key="^" type="button">xʸ</button>
-          <button class="key key-op" data-key="%" type="button">%</button>
-          <button class="key key-op" data-key="÷" type="button">÷</button>
-          <button class="key key-op" data-key="×" type="button">×</button>
+        <!-- Interactive Keypad -->
+        <div class="keypad-container">
+          <!-- Scientific Function Rows (Toggled) -->
+          <div class="sci-keys-row" id="sciKeysRow">
+            <button class="key key-sci" data-key="sin(" type="button">sin</button>
+            <button class="key key-sci" data-key="cos(" type="button">cos</button>
+            <button class="key key-sci" data-key="tan(" type="button">tan</button>
+            <button class="key key-sci" data-key="log(" type="button">log</button>
+            <button class="key key-sci" data-key="ln(" type="button">ln</button>
+            <button class="key key-sci" data-key="π" type="button">π</button>
+            <button class="key key-sci" data-key="e" type="button">e</button>
+            <button class="key key-sci" data-key="^" type="button">xʸ</button>
+          </div>
 
-          <button class="key key-num" data-key="7" type="button">7</button>
-          <button class="key key-num" data-key="8" type="button">8</button>
-          <button class="key key-num" data-key="9" type="button">9</button>
-          <button class="key key-op" data-key="-" type="button">−</button>
+          <!-- Main Keypad Grid -->
+          <div class="main-keys-grid">
+            <button class="key key-clear" data-key="AC" type="button">AC</button>
+            <button class="key key-op" data-key="(" type="button">(</button>
+            <button class="key key-op" data-key=")" type="button">)</button>
+            <button class="key key-op" data-key="sqrt(" type="button">√</button>
+            <button class="key key-op" data-key="%" type="button">%</button>
+            <button class="key key-op" data-key="÷" type="button">÷</button>
 
-          <button class="key key-num" data-key="4" type="button">4</button>
-          <button class="key key-num" data-key="5" type="button">5</button>
-          <button class="key key-num" data-key="6" type="button">6</button>
-          <button class="key key-op" data-key="+" type="button">+</button>
+            <button class="key key-num" data-key="7" type="button">7</button>
+            <button class="key key-num" data-key="8" type="button">8</button>
+            <button class="key key-num" data-key="9" type="button">9</button>
+            <button class="key key-op" data-key="×" type="button">×</button>
+            <button class="key key-op" data-key="^2" type="button">x²</button>
+            <button class="key key-op" data-key="-" type="button">−</button>
 
-          <button class="key key-num" data-key="1" type="button">1</button>
-          <button class="key key-num" data-key="2" type="button">2</button>
-          <button class="key key-num" data-key="3" type="button">3</button>
-          <button class="key key-equal" data-key="=" type="button" rowspan="2">=</button>
+            <button class="key key-num" data-key="4" type="button">4</button>
+            <button class="key key-num" data-key="5" type="button">5</button>
+            <button class="key key-num" data-key="6" type="button">6</button>
+            <button class="key key-op" data-key="+" type="button">+</button>
+            <button class="key key-num" data-key="1" type="button">1</button>
+            <button class="key key-num" data-key="2" type="button">2</button>
 
-          <button class="key key-num key-zero" data-key="0" type="button">0</button>
-          <button class="key key-num" data-key="." type="button">.</button>
-          <button class="key key-backspace" id="backspaceKey" data-key="BACKSPACE" type="button" title="O‘chirish">⌫</button>
-        </div>
-
-        <!-- Action tools -->
-        <div class="tools-row">
-          <button class="btn-subtle" id="speakResultButton" type="button">
-            <span>🔊 Natijani o‘qish</span>
-          </button>
-          <button class="btn-subtle" id="stopVoiceButton" type="button">
-            <span>⏹ To‘xtatish</span>
-          </button>
+            <button class="key key-num" data-key="3" type="button">3</button>
+            <button class="key key-num" data-key="0" type="button">0</button>
+            <button class="key key-num" data-key="." type="button">.</button>
+            <button class="key key-backspace" data-key="BACKSPACE" type="button" title="Bitta o‘chirish">⌫</button>
+            <button class="key key-equal" data-key="=" type="button">=</button>
+          </div>
         </div>
       </section>
 
-      <!-- Right: Sidebar Panel (History & Guide) -->
-      <aside class="panel side-panel">
-        <div class="side-panel-header">
-          <div class="side-title-group">
-            <span class="panel-tag">TARIX</span>
-            <h2>📋 Hisoblashlar</h2>
+      <!-- Right Side Panel: History & Intelligence Hub -->
+      <aside class="sidebar-card">
+        <!-- History Header -->
+        <div class="sidebar-header">
+          <div class="sidebar-title-group">
+            <span class="sidebar-badge">TARIX VA XOTIRA</span>
+            <h3 class="sidebar-title">📋 Hisob-kitoblar</h3>
           </div>
-          <button class="btn-subtle btn-xs" id="clearHistory" type="button">Tozalash</button>
+          <button class="ghost-btn" id="clearHistoryBtn" type="button">Tozalash</button>
         </div>
 
-        <!-- History list -->
-        <div class="history-scroll-box" id="history">
-          <div class="empty-state">
-            <span class="empty-icon">📝</span>
-            <p>Hozircha hisoblashlar yo‘q.<br>Ovoz bilan yoki tugmalar orqali misol ayting!</p>
+        <!-- History Items Scroll -->
+        <div class="history-container" id="historyContainer">
+          <div class="history-empty">
+            <span class="empty-emoji">🪐</span>
+            <p>Hozircha hisoblashlar yo‘q.<br>Mikrofonni bosing va gapiring!</p>
           </div>
         </div>
 
-        <!-- Help & Voice Guide Accordion -->
-        <div class="guide-box">
-          <h3 class="guide-title">💡 Qanday so‘zlarni aytish mumkin?</h3>
-          <ul class="guide-list">
-            <li><b>Qo‘shish:</b> “qo‘shuv”, “qo‘sh”, “plyus”, “50 ga 10 ni qo‘sh”</li>
-            <li><b>Ayirish:</b> “ayir”, “minus”, “yuzdan yigirma ayir”</li>
-            <li><b>Ko‘paytirish:</b> “ko‘paytir”, “karra”, “marta”, “7 ni 8 ga ko‘paytir”</li>
-            <li><b>Bo‘lish:</b> “bo‘luv”, “bo‘l”, “taqsim”, “100 ni 20 ga bo‘l”</li>
-            <li><b>Foiz:</b> “200 ning 15 foizi”</li>
-            <li><b>Ildiz va Daraja:</b> “ildiz 81”, “5 ning kvadrati”, “2 daraja 8”</li>
-            <li><b>Tozalash:</b> “tozala”, “nolga tengla”, “o‘chir”</li>
-          </ul>
+        <!-- Voice Recognition Cheat-sheet -->
+        <div class="voice-help-card">
+          <div class="help-card-head">
+            <span class="help-icon">💡</span>
+            <h4>Ovoz bilan gapirish namunalari</h4>
+          </div>
+          <div class="help-rules">
+            <div class="rule-item">
+              <span class="rule-badge add">+</span>
+              <p><b>Qo‘shish:</b> “25 qo‘shuv 15”, “50 ga 10 ni qo‘sh”, “plyus”</p>
+            </div>
+            <div class="rule-item">
+              <span class="rule-badge sub">−</span>
+              <p><b>Ayirish:</b> “yuzdan yigirma ayir”, “50 minus 10”</p>
+            </div>
+            <div class="rule-item">
+              <span class="rule-badge mul">×</span>
+              <p><b>Ko‘paytirish:</b> “7 ko‘paytir 8”, “5 karra 5”, “3 marta 4”</p>
+            </div>
+            <div class="rule-item">
+              <span class="rule-badge div">÷</span>
+              <p><b>Bo‘lish:</b> “96 bo‘luv 12”, “100 ni 20 ga bo‘l”</p>
+            </div>
+            <div class="rule-item">
+              <span class="rule-badge special">%</span>
+              <p><b>Foiz:</b> “200 ning 15 foizi”, “ildiz 81”, “5 kvadrati”</p>
+            </div>
+          </div>
         </div>
 
-        <div class="privacy-note">
-          <span class="privacy-icon">🔒</span>
-          <span>Barcha hisoblashlar brauzeringizda xavfsiz va maxfiy bajariladi.</span>
+        <!-- System Status Footer -->
+        <div class="system-status-pill">
+          <span class="live-dot"></span>
+          <span>Web Speech API v2.0 · Offline Math Parser</span>
         </div>
       </aside>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <p>Voice Calculator Pro · Dasturlangan va mukammallashtirilgan · 2026</p>
+    <!-- App Footer -->
+    <footer class="app-footer">
+      <p>Voice Calculator Pro AI · 2026 · Google Web Speech Engine + Vanilla JS</p>
     </footer>
   </div>
 
-  <!-- Toast notification -->
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <!-- Toast Notification -->
+  <div class="toast-popup" id="toastPopup" role="status" aria-live="polite"></div>
 
   <script src="app.js"></script>
 </body>
