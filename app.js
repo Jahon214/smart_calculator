@@ -637,7 +637,7 @@ function execute(expr, opts = { speak: false, source: "user" }) {
     addHistoryItem(raw, formatted);
 
     if (opts.speak && state.ttsEnabled) {
-      speakText("Natija " + formatted);
+      speakResultInEnglish(formatted);
     } else {
       notify("Natija: " + formatted);
     }
@@ -735,25 +735,32 @@ DOM.clearHistoryBtn.addEventListener("click", () => {
 });
 
 /* ==========================================================
-   6. TEXT-TO-SPEECH (TTS)
+   6. TEXT-TO-SPEECH (TTS - INGLIZ TILIDA NATIJANI AYTISH)
    ========================================================== */
-function speakText(text) {
+function speakResultInEnglish(formattedValue) {
   if (!("speechSynthesis" in window)) return;
   speechSynthesis.cancel();
 
-  const utter = new SpeechSynthesisUtterance(text);
-  utter.rate = 1.0;
+  const phrase = "The result is " + formattedValue;
+  const utter = new SpeechSynthesisUtterance(phrase);
+  utter.lang = "en-US";
+  utter.rate = 0.95;
   utter.pitch = 1.0;
 
   const voices = speechSynthesis.getVoices();
-  const lang = state.currentLang;
-  let voice = voices.find(v => v.lang.startsWith(lang.slice(0, 2)));
-  if (!voice && lang === "uz-UZ") {
-    voice = voices.find(v => v.lang.startsWith("ru")) || voices[0];
-  }
-  if (voice) utter.voice = voice;
+  // Inglizcha tabiiy ovozni tanlash
+  let voice = voices.find(v => v.lang === "en-US" && (v.name.includes("Google") || v.name.includes("Natural") || v.name.includes("Online")))
+           || voices.find(v => v.lang.startsWith("en-US"))
+           || voices.find(v => v.lang.startsWith("en-GB"))
+           || voices.find(v => v.lang.startsWith("en"))
+           || voices[0];
 
+  if (voice) utter.voice = voice;
   speechSynthesis.speak(utter);
+}
+
+function speakText(text) {
+  speakResultInEnglish(text);
 }
 
 DOM.toggleTtsBtn.addEventListener("click", () => {
@@ -774,7 +781,7 @@ DOM.toggleSfxBtn.addEventListener("click", () => {
 });
 
 DOM.speakResultBtn.addEventListener("click", () => {
-  speakText("Natija " + formatResult(state.lastResult));
+  speakResultInEnglish(formatResult(state.lastResult));
   playSound("click");
 });
 
